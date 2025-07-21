@@ -9,13 +9,14 @@ import {
 import MainLayout from './Components/MainLayout/MainLayout';
 import Home from './Components/Pages/Home';
 import SignUp from './Components/Pages/SignUp';
+import AddCoffee from './Components/Pages/AddCoffee';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    Children: [
+    children: [
       {
         path: "/",
         element: <Home></Home>
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>
-      }
+      },
+      {
+        path: "/addCoffee",
+        element: <AddCoffee></AddCoffee>
+      },
     ]
   },
 ]);
