@@ -1,46 +1,59 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function AddCoffee() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    const name = e.target.name.value;
-    const chef = e.target.chef.value;
-    const supplier = e.target.supplier.value;
-    const taste = e.target.taste.value;
-    const category = e.target.category.value;
-    const detail = e.target.details.value;
-    const url = e.target.photo.value;
 
-    const newCoffee = { name, chef, supplier, detail, url, taste, category };
+const UpdateCoffee = () => {
+    
+    const coffee = useLoaderData()
 
-    // send it to server
-    fetch("http://localhost:5000/coffees", {
-      method: "POST",
+    const { _id, name, chef, supplier, detail, url, taste, category } = coffee;
 
-      headers: {
-        "content-type": "application/json",
-      },
+    const handleSubmit = (e) => {
 
-      body: JSON.stringify(newCoffee),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
-          Swal.fire({
-            title: "Successful!",
-            text: "Coffee Added",
-            icon: "success",
-            confirmButtonText: "Cool",
+        e.preventDefault();
+    
+        const name = e.target.name.value;
+        const chef = e.target.chef.value;
+        const supplier = e.target.supplier.value;
+        const taste = e.target.taste.value;
+        const category = e.target.category.value;
+        const detail = e.target.details.value;
+        const url = e.target.photo.value;
+    
+        const newCoffee = { name, chef, supplier, detail, url, taste, category };
+    
+        // send it to server
+        fetch(`http://localhost:5000/coffees/${_id}`, {
+          method: "PUT",
+    
+          headers: {
+            "content-type": "application/json",
+          },
+    
+          body: JSON.stringify(newCoffee),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.modifiedCount>0) {
+              Swal.fire({
+                title: "Successful!",
+                text: "Coffee Updated",
+                icon: "success",
+                confirmButtonText: "Cool",
+              });
+            }
           });
-        }
-      });
-  };
+      };
+    
 
-  return (
-    <div className="min-h-screen bg-base-200 flex flex-col items-center justify-center px-4 py-8">
+
+
+
+    return (
+        <div className="min-h-screen bg-base-200 flex flex-col items-center justify-center px-4 py-8">
       {/* Back Link */}
       <div className="w-full max-w-4xl mb-4">
         <Link
@@ -53,7 +66,7 @@ export default function AddCoffee() {
 
       {/* Card Container */}
       <div className="bg-base-100 shadow-lg rounded-lg p-8 w-full max-w-4xl">
-        <h2 className="text-3xl font-bold text-center mb-2">Add New Coffee</h2>
+        <h2 className="text-3xl font-bold text-center mb-2">Update Coffee : {name}</h2>
         <p className="text-center mb-8 max-w-2xl mx-auto">
           It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout. The point of
@@ -70,6 +83,7 @@ export default function AddCoffee() {
               <span className="label-text">Name</span>
             </label>
             <input
+              defaultValue={name}
               required
               type="text"
               name="name"
@@ -83,6 +97,7 @@ export default function AddCoffee() {
               <span className="label-text">Chef</span>
             </label>
             <input
+            defaultValue={chef}
             required
               type="text"
               name="chef"
@@ -96,6 +111,7 @@ export default function AddCoffee() {
               <span className="label-text">Supplier</span>
             </label>
             <input
+            defaultValue={supplier}
             required
               type="text"
               name="supplier"
@@ -109,6 +125,7 @@ export default function AddCoffee() {
               <span className="label-text">Taste</span>
             </label>
             <input
+            defaultValue={taste}
             required
               type="text"
               name="taste"
@@ -122,6 +139,7 @@ export default function AddCoffee() {
               <span className="label-text">Category</span>
             </label>
             <input
+            defaultValue={category}
             required
               type="text"
               name="category"
@@ -135,6 +153,7 @@ export default function AddCoffee() {
               <span className="label-text">Details</span>
             </label>
             <input
+            defaultValue={detail}
             required
               type="text"
               name="details"
@@ -148,6 +167,7 @@ export default function AddCoffee() {
               <span className="label-text">Photo</span>
             </label>
             <input
+            defaultValue={url}
             required
               type="text"
               name="photo"
@@ -161,11 +181,13 @@ export default function AddCoffee() {
               type="submit"
               className="btn btn-block bg-[#D2B48C] text-black hover:bg-[#caa474]"
             >
-              Add Coffee
+              Update Coffee
             </button>
           </div>
         </form>
       </div>
     </div>
-  );
-}
+    );
+};
+
+export default UpdateCoffee;
