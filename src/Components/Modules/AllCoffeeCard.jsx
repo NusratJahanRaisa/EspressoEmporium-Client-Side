@@ -1,12 +1,12 @@
 import CoffeeCard from './CoffeeCard';
 
-const AllCoffeeCard = ({coffeeData}) => {
+const AllCoffeeCard = ({ setCoffees, coffees}) => {
     return (
         <div className='grid grid-cols-4 gap-5'>
             {
-                coffeeData?.map(coffee=>
+                coffees?.map(coffee=>
                  
-                    <CoffeeCard key={coffee._id} coffee={coffee}></CoffeeCard>
+                    <CoffeeCard key={coffee._id} coffee={coffee} coffees={coffees} setCoffees={setCoffees}></CoffeeCard>
                 )
             }
         </div>

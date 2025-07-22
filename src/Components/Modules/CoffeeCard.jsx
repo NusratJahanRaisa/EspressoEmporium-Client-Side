@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-export default function CoffeeCard({ coffee }) {
+export default function CoffeeCard({ coffee , setCoffees , coffees }) {
 
   const { _id, name, chef, supplier, detail, url, taste, category } = coffee;
 
@@ -29,8 +29,14 @@ export default function CoffeeCard({ coffee }) {
       title: "Deleted!",
       text: "Your file has been deleted.",
       icon: "success"
-    });
-      }
+    })
+
+      const remaining = coffees.filter(cof=>cof._id !== id)
+      console.log(remaining)
+      setCoffees(remaining)
+
+    }
+    
     })
   }
 });

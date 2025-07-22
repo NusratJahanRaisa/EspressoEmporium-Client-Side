@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import AllCoffeeCard from '../Modules/AllCoffeeCard';
 import { useLoaderData } from 'react-router-dom';
 
 const Home = () => {
   const coffeeData = useLoaderData();
+  const [coffees,setCoffees] = useState(coffeeData)
 
   return (
     <div className="relative min-h-screen">
@@ -40,7 +42,7 @@ const Home = () => {
           <h3 className="text-2xl md:text-3xl font-bold mb-16 text-center ">
             Our Popular Products
           </h3>
-          <AllCoffeeCard coffeeData={coffeeData} />
+          <AllCoffeeCard coffees={coffees} setCoffees={setCoffees} />
         </div> 
       </div> 
 
