@@ -1,6 +1,37 @@
 import { Link } from 'react-router-dom';
 
 export default function AddCoffee() {
+
+
+ const handleSubmit = (e) =>{
+    
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const chef = e.target.chef.value;
+    const supplier = e.target.supplier.value;
+    const taste = e.target.taste.value;
+    const category = e.target.category.value;
+    const detail = e.target.details.value;
+    const url = e.target.photo.value;
+    
+
+    const newCoffee = {name,chef,supplier,detail,url,taste,category};
+
+
+    // send it to server
+    fetch('http://localhost:5000/coffees',{
+        method: 'POST',
+
+        headers: {
+            'content-type' : 'application/json'
+        },
+
+        body: JSON.stringify(newCoffee)
+    })
+ }
+
+
   return (
     <div className="min-h-screen bg-base-200 flex flex-col items-center justify-center px-4 py-8">
       {/* Back Link */}
@@ -20,7 +51,7 @@ export default function AddCoffee() {
           using Content here.
         </p>
 
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="label">
               <span className="label-text">Name</span>
