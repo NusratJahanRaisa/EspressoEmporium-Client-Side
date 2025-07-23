@@ -1,4 +1,4 @@
-import { Children, StrictMode } from 'react'
+import {  StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import {
@@ -11,6 +11,7 @@ import Home from './Components/Pages/Home';
 import SignUp from './Components/Pages/SignUp';
 import AddCoffee from './Components/Pages/AddCoffee';
 import UpdateCoffee from './Components/Pages/UpdateCoffee';
+import SignIn from './Components/Pages/SignIn';
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>
+      },
+      {
+        path: "/signin",
+        element: <SignIn></SignIn>
       },
       {
         path: "/addCoffee",

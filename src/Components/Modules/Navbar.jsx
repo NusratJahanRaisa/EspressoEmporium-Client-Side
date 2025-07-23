@@ -19,7 +19,7 @@ const Navbar = () => {
 
         {/* Right Side: Login Button */}
         <div>
-          <Link to="/login" className="btn btn-outline btn-sm">
+          <Link to="/signin" className="btn btn-outline btn-sm">
             Login
           </Link>
         </div>
