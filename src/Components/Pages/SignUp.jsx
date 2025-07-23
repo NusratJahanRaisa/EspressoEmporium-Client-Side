@@ -19,18 +19,24 @@ const SignUp = () => {
       .then((res) => {
         console.log(res);
 
+        const creationTime = res.user.metadata.creationTime
+        const lastSignInTime = res.user.metadata.lastSignInTime
+
+        const newUser = {name,email,creationTime,lastSignInTime}
+
         fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
-            "content-type": "application/json",
+            "content-type": "application/json", 
           },
           body: JSON.stringify(newUser)
         })
-        .then(res=>{
-            res.json()
-        })
+        .then(res=> res.json())
         .then(data=>{
-            console.log(data)
+             if (data.insertedId){
+
+                console.log('user created in db')
+             }
         })
       })
       .catch((err) => {
