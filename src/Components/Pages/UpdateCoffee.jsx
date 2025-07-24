@@ -25,7 +25,7 @@ const UpdateCoffee = () => {
         const newCoffee = { name, chef, supplier, detail, url, taste, category };
     
         // send it to server
-        fetch(`http://localhost:5000/coffees/${_id}`, {
+        fetch(`https://espresso-emporium-server-side-beige.vercel.app/coffees/${_id}`, {
           method: "PUT",
     
           headers: {
@@ -36,7 +36,7 @@ const UpdateCoffee = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.modifiedCount>0) {
               Swal.fire({
                 title: "Successful!",

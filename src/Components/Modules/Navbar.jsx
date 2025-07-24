@@ -13,7 +13,7 @@ const Navbar = () => {
           <nav className="flex items-center gap-6">
             <Link to="/" className="hover:underline">Home</Link>
             <Link to="/addCoffee" className="hover:underline">Add Coffee</Link>
-            {/* <Link to="/orders" className="hover:underline">Your Orders</Link> */}
+            <Link to="/users" className="hover:underline">Users</Link>
           </nav>
         </div>
 

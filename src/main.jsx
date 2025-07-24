@@ -13,6 +13,7 @@ import AddCoffee from './Components/Pages/AddCoffee';
 import UpdateCoffee from './Components/Pages/UpdateCoffee';
 import SignIn from './Components/Pages/SignIn';
 import AuthProvider from './Components/Providers/AuthProvider';
+import Users from './Components/Pages/Users';
 
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: ()=>fetch('http://localhost:5000/coffees'),
+        loader: ()=>fetch('https://espresso-emporium-server-side-beige.vercel.app/coffees'),
       },
       {
         path: "/signup",
@@ -40,7 +41,12 @@ const router = createBrowserRouter([
       {
         path: "/updateCoffee/:id",
         element: <UpdateCoffee></UpdateCoffee>,
-        loader: ({params})=>fetch(`http://localhost:5000/coffees/${params.id}`)
+        loader: ({params})=>fetch(`https://espresso-emporium-server-side-beige.vercel.app/coffees/${params.id}`)
+      },
+      {
+        path: "/users",
+        element: <Users></Users>,
+        loader: ()=>fetch('https://espresso-emporium-server-side-beige.vercel.app/users')
       },
     ]
   },

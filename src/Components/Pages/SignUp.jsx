@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { handleSignUp } = useContext(AuthContext);
@@ -13,34 +14,46 @@ const SignUp = () => {
     const password = e.target.password.value;
 
 
-    const newUser = {name,email}
-
     handleSignUp(email, password)
-      .then((res) => {
+      .then(res => {
+
         console.log(res);
 
-        const creationTime = res.user.metadata.creationTime
-        const lastSignInTime = res.user.metadata.lastSignInTime
+        const creationTime = res.user.metadata.creationTime;
+        const lastSignInTime = res.user.metadata.lastSignInTime;
 
-        const newUser = {name,email,creationTime,lastSignInTime}
+        const newUser = { name, email, creationTime, lastSignInTime };
 
-        fetch("http://localhost:5000/users", {
+
+        
+        fetch("https://espresso-emporium-server-side-beige.vercel.app/users", {
           method: "POST",
           headers: {
-            "content-type": "application/json", 
+            "content-type": "application/json",
           },
-          body: JSON.stringify(newUser)
+          body: JSON.stringify(newUser),
         })
-        .then(res=> res.json())
-        .then(data=>{
-             if (data.insertedId){
+          .then(res => res.json())
+          .then(data => {
 
-                console.log('user created in db')
-             }
-        })
-      })
+            console.log('user crated to db , ',data)
+
+            if (data.insertedId) {
+              
+              Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Successfully Created Account",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+      }
+      
+    )
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 

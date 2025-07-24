@@ -19,7 +19,7 @@ export default function CoffeeCard({ coffee , setCoffees , coffees }) {
 }).then((result) => {
   if (result.isConfirmed) {
 
-    fetch(`http://localhost:5000/coffees/${id}`,{
+    fetch(`https://espresso-emporium-server-side-beige.vercel.app/coffees/${id}`,{
       method: "DELETE"
     })
     .then(res=>res.json())
@@ -32,7 +32,7 @@ export default function CoffeeCard({ coffee , setCoffees , coffees }) {
     })
 
       const remaining = coffees.filter(cof=>cof._id !== id)
-      console.log(remaining)
+      // console.log(remaining)
       setCoffees(remaining)
 
     }

@@ -16,7 +16,7 @@ export default function AddCoffee() {
     const newCoffee = { name, chef, supplier, detail, url, taste, category };
 
     // send it to server
-    fetch("http://localhost:5000/coffees", {
+    fetch("https://espresso-emporium-server-side-beige.vercel.app/coffees", {
       method: "POST",
 
       headers: {
