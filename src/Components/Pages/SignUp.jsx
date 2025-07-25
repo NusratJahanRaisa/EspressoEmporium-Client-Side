@@ -17,7 +17,7 @@ const SignUp = () => {
     handleSignUp(email, password)
       .then(res => {
 
-        console.log(res);
+        // console.log(res);
 
         const creationTime = res.user.metadata.creationTime;
         const lastSignInTime = res.user.metadata.lastSignInTime;
@@ -36,7 +36,7 @@ const SignUp = () => {
           .then(res => res.json())
           .then(data => {
 
-            console.log('user crated to db , ',data)
+            // console.log('user crated to db , ',data)
 
             if (data.insertedId) {
               

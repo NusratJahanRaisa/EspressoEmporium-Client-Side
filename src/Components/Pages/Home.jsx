@@ -6,6 +6,10 @@ const Home = () => {
   const coffeeData = useLoaderData();
   const [coffees,setCoffees] = useState(coffeeData)
 
+  // console.log(coffeeData)
+
+  // console.log("yooooooooooooooooo", coffees)
+
   return (
     <div className="relative min-h-screen">
 
